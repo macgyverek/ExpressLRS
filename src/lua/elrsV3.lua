@@ -941,15 +941,15 @@ local function run(event, touchState)
   if event == nil then return 2 end
   if checkCrsfModule then return checkCrsfModule() end
 
-  local forceRedraw = refreshNext()
-
   event = (touch2evt and touch2evt(event, touchState)) or event
   if fieldPopup ~= nil then
     runPopupPage(event)
-  elseif event ~= 0 or forceRedraw or edit then
+  else
     runDevicePage(event)
   end
-
+  
+  refreshNext()
+  
   return exitscript
 end
 
